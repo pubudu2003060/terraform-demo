@@ -3,5 +3,6 @@ terraform {
     bucket = "terraform-demo-s3-bucket-pubudu2003060"
     region = "eu-north-1"
     key = "pubudu/terraform/backend.tf"
+   dynamodb_table = "terraform-lock"
   }
 }

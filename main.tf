@@ -12,3 +12,7 @@ module "ec2_instance" {
 module "aws_s3_bucket" {
   source = "./modules/s3"
 }
+
+module "aws_dynamodb_table" {
+ source="./modules/dynomo_db" 
+}
