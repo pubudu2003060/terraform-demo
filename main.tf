@@ -1,11 +1,10 @@
-
-
 provider "aws" {
-    region = "eu-north-1"
+  region = "uu-north-1"
 }
 
-resource "aws_instance" "example" {
-    ami = var.ami_value
-    instance_type = var.instance_type_value
-    subnet_id = var.subnet_id_value
+module "ec2_instance" {
+  source = "./modules/ec2_instance"
+  ami_value = "ami-042b4708b1d05f512"
+  instance_type_value = "t3.micro"
+  subnet_id_value = "subnet-048e15962efdc8543"
 }
