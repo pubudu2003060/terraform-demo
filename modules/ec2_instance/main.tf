@@ -81,7 +81,7 @@ resource "aws_instance" "example" {
     associate_public_ip_address = true
 
 
-    connection {
+   connection {
         type = "ssh"
         user = "ubuntu"
         private_key = file("~/.ssh/terraform_key")
@@ -99,7 +99,7 @@ resource "aws_instance" "example" {
       "sudo apt update -y",  
       "sudo apt-get install -y python3-pip", 
       "cd /home/ubuntu",
-      "sudo pip3 install flask",
+      "sudo apt install -y python3-flask",
       "sudo python3 app.py &",
     ]
   }
