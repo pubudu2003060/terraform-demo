@@ -4,7 +4,7 @@ provider "aws" {
 
 
 module "aws_s3_bucket" {
-  source = "../main/modules/s3"
+  source = "../modules/s3"
 }
 
 module "aws_dynamodb_table" {

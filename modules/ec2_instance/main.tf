@@ -95,12 +95,17 @@ resource "aws_instance" "example" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo 'Hello from the remote instance'",
-      "sudo apt update -y",  
-      "sudo apt-get install -y python3-pip", 
-      "cd /home/ubuntu",
+     "echo 'Hello from the remote instance'",
+      "sudo apt update -y",
+      "sudo apt-get install -y python3-pip",
       "sudo apt install -y python3-flask",
-      "sudo python3 app.py &",
+      "cd /home/ubuntu",
+      "sudo bash -c 'cat <<EOF > /etc/systemd/system/flask-app.service\n[Unit]\nDescription=Flask App\nAfter=network.target\n\n[Service]\nUser=ubuntu\nWorkingDirectory=/home/ubuntu\nExecStart=/usr/bin/python3 /home/ubuntu/app.py\nRestart=always\n\n[Install]\nWantedBy=multi-user.target\nEOF'",
+      "sudo systemctl enable flask-app.service",
+      "sudo systemctl start flask-app.service",
+      "sleep 5",
+      "curl http://localhost:5000"
     ]
   }
 }
+
