@@ -23,14 +23,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create directory for key
-        run: mkdir -p ~/terraform
-
-      - name: Create empty key file (optional)
-        run: touch ~/terraform/terraform_key.pub
+      - name: Create directory for keys
+        run: mkdir -p ~/.ssh
 
       - name: Create public key file
-        run: echo "${{ secrets.PUBLIC_SSH_KEY }}" > ~/terraform/terraform_key.pub
+        run: echo "${{ secrets.PUBLIC_SSH_KEY }}" > ~/.ssh/terraform_key.pub
+
+      - name: Create private key file
+        run: |
+          echo "${{ secrets.PRIVATE_SSH_KEY }}" > ~/.ssh/terraform_key
+          chmod 600 ~/.ssh/terraform_key
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
