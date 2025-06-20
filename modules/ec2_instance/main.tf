@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_key_pair" "example" {
     key_name   = "terraform demo pubudu"
-    public_key = file("../../main/terraform_key.pub")
+    public_key = file("./main/terraform_key.pub")
 }
 
 resource "aws_vpc" "myvpc" {
