@@ -33,7 +33,7 @@ jobs:
         working-directory: ./main
 
       - name: Select Workspace
-        run: terraform workspace select ${{ matrix.workspace }} 
+        run: terraform workspace select ${{ matrix.workspace }} || terraform workspace new ${{ matrix.workspace }}
         working-directory: ./main
 
       - name: Terraform Validate
