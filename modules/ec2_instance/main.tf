@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_key_pair" "example" {
     key_name   = "terraform demo pubudu"
-   public_key = file("~/.ssh/terraform_key.pub") # Updated path
+   public_key = file("../main/terraform_key.pub") # Updated path
 }
 
 
@@ -85,12 +85,12 @@ resource "aws_instance" "example" {
    connection {
         type = "ssh"
         user = "ubuntu"
-        private_key = file("~/.ssh/terraform_key")
+        private_key = file("../main/terraform_key")
         host = self.public_ip
     }
 
     provisioner "file" {
-    source      = "app.py"  
+    source      = "../main/app.py"
     destination = "/home/ubuntu/app.py"  
   }
 
